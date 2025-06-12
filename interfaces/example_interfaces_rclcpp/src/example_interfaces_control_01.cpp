@@ -8,8 +8,7 @@ public:
   ExampleInterfacesControl(std::string name) : Node(name) {
     RCLCPP_INFO(this->get_logger(), "节点已启动：%s.", name.c_str());
     /*创建move_robot客户端*/
-    client_ = this->create_client<example_ros2_interfaces::srv::MoveRobot>(
-      "move_robot");
+    client_ = this->create_client<example_ros2_interfaces::srv::MoveRobot>("move_robot");
     /*订阅机器人状态话题*/
     robot_status_subscribe_ = this->create_subscription<example_ros2_interfaces::msg::RobotStatus>("robot_status", 10, std::bind(&ExampleInterfacesControl::robot_status_callback_, this, std::placeholders::_1));
   }
